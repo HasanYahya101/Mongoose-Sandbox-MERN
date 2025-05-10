@@ -29,13 +29,14 @@ const RequestPanel = ({ selectedEndpointId }) => {
       const endpoint = getEndpointById(selectedEndpointId);
       if (endpoint) {
         setSelectedEndpoint(endpoint);
+        const initialBody = endpoint.exampleRequest ? JSON.stringify(endpoint.exampleRequest, null, 2) : '';
+        setBodyInput(initialBody);
         updateRequest({
           url: `${basePath}${endpoint.path}`,
           method: endpoint.method,
           body: endpoint.exampleRequest || null
         });
 
-        // Set active tab based on endpoint type
         if (endpoint.method === 'GET') {
           setActiveTab('params');
         } else {
@@ -44,6 +45,7 @@ const RequestPanel = ({ selectedEndpointId }) => {
       }
     }
   }, [selectedEndpointId]);
+
 
   const handleMethodChange = (method) => {
     updateRequest({ method });
@@ -69,6 +71,8 @@ const RequestPanel = ({ selectedEndpointId }) => {
     }
     return activeRequest.body ? JSON.stringify(activeRequest.body, null, 2) : '';
   };
+
+  const [bodyInput, setBodyInput] = useState('');
 
   return (
     <div className="h-full flex flex-col bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-hidden">
@@ -241,30 +245,17 @@ const RequestPanel = ({ selectedEndpointId }) => {
           <div className="flex-1 overflow-hidden">
             <Editor
               language="json"
-              value={getBodyString()}
-              onChange={handleBodyChange}
+              value={bodyInput}
+              onChange={(value) => {
+                setBodyInput(value);
+                try {
+                  const parsed = JSON.parse(value);
+                  updateRequest({ body: parsed });
+                } catch {
+                  updateRequest({ body: value });
+                }
+              }}
               theme={theme.isDark ? 'vs-dark' : 'light'}
-              colors={
-                theme.isDark
-                  ? {
-                    'editor.background': '#1E1E1E',
-                    'editor.foreground': '#FFFFFF',
-                    'editorCursor.foreground': '#FFFFFF',
-                    'editor.lineHighlightBackground': '#2A2A2A',
-                    'editorLineNumber.activeForeground': '#FFFFFF',
-                    'editor.selectionBackground': '#264F78',
-                    'editor.selectionHighlightBackground': '#264F78'
-                  }
-                  : {
-                    'editor.background': '#FFFFFF',
-                    'editor.foreground': '#000000',
-                    'editorCursor.foreground': '#000000',
-                    'editor.lineHighlightBackground': '#F3F4F6',
-                    'editorLineNumber.activeForeground': '#000000',
-                    'editor.selectionBackground': '#BEE3F8',
-                    'editor.selectionHighlightBackground': '#BEE3F8'
-                  }
-              }
               options={{
                 minimap: { enabled: false },
                 fontSize: 14,
