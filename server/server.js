@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-mongoose.connect(process.env.MONGODB_URI )
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log('MongoDB Connection Error:', err));
 
@@ -48,7 +48,6 @@ router.post('/users/batch', async (req, res) => {
 });
 
 // 3. find()
-// Backend (server.js)
 router.get('/users', async (req, res) => {
   try {
     const query = req.query.query ? JSON.parse(req.query.query) : {};
@@ -344,9 +343,9 @@ router.put('/collections/rename', async (req, res) => {
 router.delete('/collections/drop', async (req, res) => {
   try {
     await User.collection.drop();
-    res.status(200).json({ 
-      success: true, 
-      message: 'Collection drop would occur here' 
+    res.status(200).json({
+      success: true,
+      message: 'Collection drop would occur here'
     });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
@@ -381,7 +380,7 @@ router.post('/seed', async (req, res) => {
       { name: 'Dave', email: 'dave@example.com', age: 42, city: 'Seattle', active: false },
       { name: 'Eve', email: 'eve@example.com', age: 16, city: 'Chicago', active: true }
     ];
-    
+
     await User.deleteMany({});
     const users = await User.insertMany(sampleUsers);
     res.status(200).json({ success: true, data: users });
