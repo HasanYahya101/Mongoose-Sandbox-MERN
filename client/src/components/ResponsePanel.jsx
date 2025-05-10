@@ -79,6 +79,17 @@ const ResponsePanel = () => {
                   {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} />}
                 </button>
                 <button
+                  onClick={() => {
+                    const blob = new Blob([JSON.stringify(response.data, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'response.json';
+                    a.click();
+                    URL.revokeObjectURL(url);
+
+                    a.remove();
+                  }}
                   disabled={!response || isLoading}
                   className="p-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
