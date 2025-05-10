@@ -267,6 +267,9 @@ const RequestPanel = ({ selectedEndpointId }) => {
                 folding: true,
                 lineDecorationsWidth: 10,
                 lineNumbersMinChars: 3,
+                formatOnPaste: true,
+                formatOnType: true,
+                autoIndent: true,
                 padding: { top: 10 }
               }}
               className="h-full"
