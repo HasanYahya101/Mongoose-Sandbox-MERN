@@ -1,5 +1,5 @@
 {
-  "name": "mongodb-operations-demo",
+  "name": "mongoose-sandbox",
   "version": "1.0.0",
   "description": "Demonstration of 25 common MongoDB operations",
   "main": "server.js",
