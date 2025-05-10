@@ -82,7 +82,7 @@ const RequestPanel = ({ selectedEndpointId }) => {
           <div className="flex-1 relative">
             <input
               type="text"
-              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full h-10 px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
               placeholder="Enter request URL"
               value={activeRequest.url}
               onChange={handleUrlChange}
@@ -91,7 +91,7 @@ const RequestPanel = ({ selectedEndpointId }) => {
           </div>
 
           <button
-            className="px-4 py-2 bg-blue-500 method-button hover:bg-blue-600 text-white rounded-md transition-colors flex items-center"
+            className="px-4 py-2 h-10 bg-blue-500 method-button hover:bg-blue-600 text-white rounded-md transition-colors flex items-center"
             onClick={() => sendRequest()}
             disabled={isLoading}
           >
