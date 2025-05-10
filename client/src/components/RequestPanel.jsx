@@ -21,13 +21,16 @@ const RequestPanel = ({ selectedEndpointId }) => {
   const [showPathParams, setShowPathParams] = useState(false);
   const [selectedEndpoint, setSelectedEndpoint] = useState(null);
 
+  // get base path from environment variable
+  const basePath = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
   useEffect(() => {
     if (selectedEndpointId) {
       const endpoint = getEndpointById(selectedEndpointId);
       if (endpoint) {
         setSelectedEndpoint(endpoint);
         updateRequest({
-          url: `http://localhost:5000${endpoint.path}`,
+          url: `${basePath}${endpoint.path}`,
           method: endpoint.method,
           body: endpoint.exampleRequest || null
         });
