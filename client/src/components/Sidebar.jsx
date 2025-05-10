@@ -23,31 +23,6 @@ const Sidebar = ({ onSelectEndpoint }) => {
     }));
   };
 
-  const getCategoryIcon = (category) => {
-    switch (category.toLowerCase()) {
-      case 'create':
-        return <span className="text-green-500">POST</span>;
-      case 'read':
-        return <span className="text-blue-500">GET</span>;
-      case 'update':
-        return <span className="text-amber-500">PUT</span>;
-      case 'delete':
-        return <span className="text-red-500">DEL</span>;
-      case 'aggregate':
-        return <span className="text-purple-500">AGG</span>;
-      case 'index':
-        return <span className="text-indigo-500">IDX</span>;
-      case 'collection':
-        return <span className="text-teal-500">COL</span>;
-      case 'bulk':
-        return <span className="text-pink-500">BLK</span>;
-      case 'utility':
-        return <span className="text-gray-500">UTL</span>;
-      default:
-        return <span className="text-gray-500">API</span>;
-    }
-  };
-
   const getMethodColor = (method) => {
     switch (method.toUpperCase()) {
       case 'GET':
@@ -94,7 +69,6 @@ const Sidebar = ({ onSelectEndpoint }) => {
                     ) : (
                       <ChevronRight size={16} className="mr-2 text-slate-400" />
                     )}
-                    <span className="mr-2">{getCategoryIcon(category)}</span>
                     <span className="text-slate-700 dark:text-slate-300">{category}</span>
                   </div>
                   <span className="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs px-2 py-1 rounded-full">
