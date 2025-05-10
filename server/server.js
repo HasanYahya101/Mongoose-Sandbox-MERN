@@ -24,7 +24,7 @@ const User = mongoose.model('User', userSchema);
 
 const router = express.Router();
 app.get('/', (req, res) => {
-  res.send('Mongodb operations backend!');
+  res.send('Server is up and Running for Mongoose Sandbox');
 });
 
 // 1. insertOne()
