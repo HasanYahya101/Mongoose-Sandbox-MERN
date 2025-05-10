@@ -36,7 +36,7 @@ const MethodSelector = ({ value, onChange }) => {
         aria-expanded={isOpen}
         disabled
       >
-        <span>{value}</span>
+        <span className='ml-4'>{value}</span>
         <ChevronRight size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
