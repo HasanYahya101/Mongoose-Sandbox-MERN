@@ -86,6 +86,7 @@ const RequestPanel = ({ selectedEndpointId }) => {
               placeholder="Enter request URL"
               value={activeRequest.url}
               onChange={handleUrlChange}
+              disabled
             />
           </div>
 
