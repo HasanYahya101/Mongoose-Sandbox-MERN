@@ -148,15 +148,6 @@ const ResponsePanel = () => {
               >
                 Headers
               </button>
-              <button
-                className={`px-4 py-2 text-sm border-b-2 transition-colors ${activeTab === 'tests'
-                  ? 'border-blue-500 text-blue-500'
-                  : 'border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white'
-                  }`}
-                onClick={() => setActiveTab('tests')}
-              >
-                Tests
-              </button>
             </div>
           </div>
 
@@ -210,11 +201,7 @@ const ResponsePanel = () => {
                   </div>
                 )}
 
-                {activeTab === 'tests' && (
-                  <div className="p-4 text-center text-slate-500 dark:text-slate-400">
-                    <p>No tests have been written for this request</p>
-                  </div>
-                )}
+
               </>
             )}
           </div>
