@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const defaultRequest = {
   id: uuidv4(),
@@ -136,70 +137,72 @@ export const RequestProvider = ({ children }) => {
       const url = parseUrl(activeRequest.url);
       const method = activeRequest.method.toLowerCase();
 
-      // Process headers
+      // Prepare headers
       const headers = {};
       Object.entries(activeRequest.headers).forEach(([key, value]) => {
         headers[key] = replaceEnvironmentVariables(value);
       });
 
-      // Process params
+      // Prepare params
       const params = {};
       Object.entries(activeRequest.params).forEach(([key, value]) => {
         params[key] = replaceEnvironmentVariables(value);
       });
 
-      // Process body
+      // Prepare body
       let body = activeRequest.body;
       if (typeof body === 'string') {
         body = replaceEnvironmentVariables(body);
         try {
           body = JSON.parse(body);
         } catch (e) {
-          // Keep as string if not valid JSON
+          // Leave as string if not valid JSON
         }
       }
 
       const startTime = Date.now();
 
-      // Simulate API call instead of actual fetch for demo purposes
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Send actual request using axios
+      const res = await axios({
+        url,
+        method,
+        headers,
+        params,
+        data: body,
+      });
 
       const endTime = Date.now();
       const duration = endTime - startTime;
 
-      // Simulate response
-      const simulatedResponse = {
-        status: 200,
-        statusText: 'OK',
-        data: { success: true, message: 'Request processed successfully', method, url, body },
-        headers: {
-          'content-type': 'application/json',
-          'server': 'MongoDB API Tester',
-          'cache-control': 'no-cache'
-        },
+      const actualResponse = {
+        status: res.status,
+        statusText: res.statusText,
+        data: res.data,
+        headers: res.headers,
         time: duration,
-        size: JSON.stringify(body || {}).length
+        size: JSON.stringify(res.data).length,
       };
 
-      setResponse(simulatedResponse);
+      setResponse(actualResponse);
 
-      // Add to history if successful
       const historyItem = { ...activeRequest, id: uuidv4(), createdAt: new Date() };
       setHistory(prev => [historyItem, ...prev.slice(0, 19)]);
 
       toast.success('Request sent successfully');
     } catch (error) {
-      console.error('Request error:', error);
-      toast.error('Request failed');
+      console.error('Axios request error:', error);
 
+      const errRes = error.response;
       setResponse({
-        status: 500,
-        statusText: 'Error',
-        data: { error: 'Request failed' },
-        headers: {},
+        status: errRes?.status || 500,
+        statusText: errRes?.statusText || 'Error',
+        data: errRes?.data || { error: error.message },
+        headers: errRes?.headers || {},
         time: 0,
         size: 0
       });
+
+      toast.error('Request failed');
     } finally {
       setIsLoading(false);
     }
