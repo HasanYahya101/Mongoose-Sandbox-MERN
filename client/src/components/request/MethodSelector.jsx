@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'];
@@ -29,14 +29,15 @@ const MethodSelector = ({ value, onChange }) => {
   return (
     <div className="relative w-28" ref={ref}>
       <button
-        className={`method-button method-${value} w-full flex items-center justify-between`}
+        className={`method-button method-${value} w-full h-10 flex items-center justify-between`}
         onClick={() => setIsOpen(!isOpen)}
         type="button"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        disabled
       >
         <span>{value}</span>
-        <ChevronDown size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronRight size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       <AnimatePresence>
