@@ -32,7 +32,9 @@ const Navbar = ({ toggleSidebar }) => {
 
       <div className="flex items-center space-x-2">
         <Button
-          href="https://github.com/HasanYahya101/"
+          onClick={()=>{
+            window.open('https://github.com/HasanYahya101/Mongoose-Sandbox-MERN', '_blank');
+          }}
           target="_blank"
           rel="noopener noreferrer"
           variant="ghost"
@@ -42,9 +44,10 @@ const Navbar = ({ toggleSidebar }) => {
           GitHub
         </Button>
 
-        <button
+        <Button
           onClick={toggleTheme}
-          className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          variant='ghost'
+          className="rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors h-10 w-10"
           aria-label={theme.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
           {theme.isDark ? (
@@ -52,7 +55,7 @@ const Navbar = ({ toggleSidebar }) => {
           ) : (
             <Moon size={20} className="text-slate-600" />
           )}
-        </button>
+        </Button>
       </div>
     </header >
   );
