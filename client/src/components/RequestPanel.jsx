@@ -231,7 +231,6 @@ const RequestPanel = ({ selectedEndpointId }) => {
               >
                 JSON
               </span>
-
             </div>
           </div>
 
