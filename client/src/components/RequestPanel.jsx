@@ -233,13 +233,6 @@ const RequestPanel = ({ selectedEndpointId }) => {
               </span>
 
             </div>
-
-            <div className="flex items-center space-x-2">
-              <button className="text-blue-500 hover:text-blue-600 transition-colors flex items-center text-xs">
-                <Code size={14} className="mr-1" />
-                Format Code
-              </button>
-            </div>
           </div>
 
           <div className="flex-1 overflow-hidden">
