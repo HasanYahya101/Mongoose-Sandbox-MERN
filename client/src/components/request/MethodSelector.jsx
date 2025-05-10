@@ -36,8 +36,13 @@ const MethodSelector = ({ value, onChange }) => {
         aria-expanded={isOpen}
         disabled
       >
-        <span className='ml-4'>{value}</span>
-        <ChevronRight size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <div className="flex items-center gap-2 mx-auto justify-between">
+          <span className='mb-[1px]'>{value}</span>
+          <ChevronRight
+            size={16}
+            className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          />
+        </div>
       </button>
 
       <AnimatePresence>
