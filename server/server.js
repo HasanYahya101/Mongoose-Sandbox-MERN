@@ -10,8 +10,11 @@ const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
 console.log('CLIENT_URL:', CLIENT_URL);
 
+// create list with normal and / trailing slash
+const clientUrls = [CLIENT_URL, CLIENT_URL + '/'];
+
 app.use(cors({
-  origin: `${CLIENT_URL}`,
+  origin: clientUrls,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
