@@ -563,7 +563,12 @@ export const endpoints = [
         defaultValue: '[{"$group": {"_id": "$city", "count": {"$sum": 1}}}]'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: [
+      [
+        { $match: { active: true } },
+        { $group: { _id: null, averageAge: { $avg: "$age" } } }
+      ]
+    ],
     exampleResponse: {
       success: true,
       data: [
