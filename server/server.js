@@ -257,13 +257,12 @@ router.delete('/users/many', async (req, res) => {
 });
 
 // 15. aggregate()
-router.get('/users/aggregate', async (req, res) => {
+router.post('/users/aggregate', async (req, res) => {
   try {
-    // get the data passed with the url after the ? into const body
-    const body = qs.parse(req.query.body);
-    console.log('Body:', body);
-    return;
-    const results = await User.aggregate(pipeline);
+    if (!req.body || !Array.isArray(req.body)) {
+      return res.status(400).json({ success: false, message: 'Aggregation pipeline (param) is required and must be an array' });
+    }
+    const results = await User.aggregate(req.body);
     res.status(200).json({ success: true, data: results });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

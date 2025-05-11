@@ -551,7 +551,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'aggregate',
     path: '/api/users/aggregate',
-    method: 'GET',
+    method: 'POST',
     description: 'Perform aggregation operations on users',
     category: 'Aggregate',
     params: [

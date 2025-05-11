@@ -43,7 +43,7 @@ export const RequestProvider = ({ children }) => {
     return savedRequest ? JSON.parse(savedRequest) : defaultRequest;
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log('Active Request:', activeRequest);
     // convert the body to string and also print
     if (typeof activeRequest.body === 'object') {
@@ -54,7 +54,7 @@ export const RequestProvider = ({ children }) => {
 
     // print url
     console.log('URL:', parseUrl(activeRequest.url));
-  }, [activeRequest]);
+  }, [activeRequest]);*/
 
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -178,13 +178,9 @@ export const RequestProvider = ({ children }) => {
 
       const startTime = Date.now();
 
-      const queryString = qs.stringify(body, { indices: false });
-      const url_new = url + '?' + queryString;
-      console.log('Final URL:', url_new);
-
       // Send actual request using axios
       const res = await axios({
-        url: url_new,
+        url,
         method,
         headers,
         params,
