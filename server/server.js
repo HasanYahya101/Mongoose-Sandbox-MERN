@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const qs = require('qs');
 require('dotenv').config();
 
 const app = express();
@@ -258,9 +259,10 @@ router.delete('/users/many', async (req, res) => {
 // 15. aggregate()
 router.get('/users/aggregate', async (req, res) => {
   try {
-    const pipeline = req.query.pipeline ? JSON.parse(req.query.pipeline) : [
-      { $group: { _id: '$city', count: { $sum: 1 } } }
-    ];
+    // get the data passed with the url after the ? into const body
+    const body = qs.parse(req.query.body);
+    console.log('Body:', body);
+    return;
     const results = await User.aggregate(pipeline);
     res.status(200).json({ success: true, data: results });
   } catch (error) {
