@@ -217,6 +217,9 @@ router.put('/users/replace', async (req, res) => {
   try {
     const filter = req.body.filter || {};
     const replacement = req.body.replacement || {};
+    if (!replacement || !filter) {
+      return res.status(400).json({ success: false, message: 'Filter and replacement params are required' });
+    }
     const result = await User.replaceOne(filter, replacement);
     res.status(200).json({ success: true, data: result });
   } catch (error) {
