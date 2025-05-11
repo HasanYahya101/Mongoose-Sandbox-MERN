@@ -402,6 +402,16 @@ router.post('/seed', async (req, res) => {
   }
 });
 
+router.get('/all', async (req, res) => {
+  try {
+    // return all users with all fields
+    const users = await User.find({}, { __v: 0 });
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
+
 app.use('/api', router);
 
 if (process.env.NODE_ENV === 'production') {

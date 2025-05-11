@@ -876,6 +876,38 @@ export const endpoints = [
   },
   {
     id: uuidv4(),
+    name: 'getAllData',
+    path: '/api/all',
+    method: 'GET',
+    description: 'Get all data from the users collection',
+    category: 'Utility',
+    exampleRequest: {},
+    exampleResponse: {
+      success: true,
+      data: [
+        {
+          _id: '60d21b4967d0d8992e610c85',
+          name: 'Alice',
+          email: 'alice@example.com',
+          age: 28,
+          city: 'New York',
+          active: true,
+          createdAt: '2023-06-20T12:00:00.000Z'
+        },
+        {
+          _id: '60d21b4967d0d8992e610c86',
+          name: 'Bob',
+          email: 'bob@example.com',
+          age: 35,
+          city: 'Chicago',
+          active: true,
+          createdAt: '2023-06-20T12:00:00.000Z'
+        }
+      ]
+    }
+  },
+  {
+    id: uuidv4(),
     name: 'resetDatabase',
     path: '/api/reset',
     method: 'DELETE',
