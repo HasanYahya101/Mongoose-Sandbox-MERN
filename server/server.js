@@ -61,7 +61,7 @@ router.post('/users/batch', async (req, res) => {
 });
 
 // 3. find()
-router.get('/users', async (req, res) => {
+router.post('/users/find', async (req, res) => {
   console.log(req.body);
   try {
     const users = await User.find(req.body);

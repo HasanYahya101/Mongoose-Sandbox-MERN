@@ -119,8 +119,8 @@ export const endpoints = [
   {
     id: uuidv4(),
     name: 'find',
-    path: '/api/users',
-    method: 'GET',
+    path: '/api/users/find',
+    method: 'POST',
     description: 'Find users based on query parameters',
     category: 'Read',
     params: [
