@@ -4,7 +4,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronRight, Database, Clock, BookOpen, Package, Settings, PlayCircle } from 'lucide-react';
 
 const Sidebar = ({ onSelectEndpoint }) => {
-  const endpointsByCategory = getEndpointsByCategory();
+  const [searchQuery, setSearchQuery] = useState('');
+  const rawEndpointsByCategory = getEndpointsByCategory();
+
+  const endpointsByCategory = Object.entries(rawEndpointsByCategory).reduce((acc, [category, endpoints]) => {
+    const lowerQuery = searchQuery.toLowerCase();
+
+    const categoryMatches = category.toLowerCase().includes(lowerQuery);
+
+    const filtered = endpoints.filter(endpoint =>
+      categoryMatches || endpoint.name.toLowerCase().includes(lowerQuery)
+    );
+
+    if (filtered.length > 0) {
+      acc[category] = filtered;
+    }
+
+    return acc;
+  }, {});
+
+
   const [expandedCategories, setExpandedCategories] = useState(() => {
     // Start with all categories expanded
     const expanded = {};
@@ -58,6 +77,8 @@ const Sidebar = ({ onSelectEndpoint }) => {
                 <input
                   type="text"
                   placeholder="Search APIs..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full p-2 pl-3 pr-8 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
