@@ -651,7 +651,7 @@ export const endpoints = [
     description: 'Get all indexes for the users collection',
     category: 'Index',
     exampleRequest: {
-      // No request body needed
+      "User Message": "No request body needed"
     },
     exampleResponse: {
       success: true,
