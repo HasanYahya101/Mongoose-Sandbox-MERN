@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getEndpointsByCategory } from '../data/endpoints';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronRight, Database, Clock, BookOpen, Package, Settings, PlayCircle } from 'lucide-react';
@@ -39,6 +39,14 @@ const Sidebar = ({ onSelectEndpoint }) => {
         return 'text-gray-500';
     }
   };
+
+  useEffect(() => {
+    // select the reset database endpoint by default
+    const resetEndpoint = endpointsByCategory['Utility'].find(endpoint => endpoint.name === 'resetDatabase');
+    if (resetEndpoint) {
+      onSelectEndpoint(resetEndpoint.id);
+    }
+  })
 
   return (
     <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-900">
