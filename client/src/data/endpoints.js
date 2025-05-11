@@ -42,11 +42,11 @@ export const endpoints = [
       }
     ],
     exampleRequest: {
-      name: 'John Doe',
-      email: 'john@example.com',
-      age: 30,
-      city: 'New York',
-      active: true
+      "name": 'John Doe',
+      "email": 'john@example.com',
+      "age": 30,
+      "city": 'New York',
+      "active": true
     },
     exampleResponse: {
       success: true,
@@ -78,11 +78,11 @@ export const endpoints = [
     ],
     exampleRequest: [
       {
-        name: 'John Doe',
-        email: 'john@example.com',
-        age: 30,
-        city: 'New York',
-        active: true
+        "name": 'John Doe',
+        "email": 'john@example.com',
+        "age": 30,
+        "city": 'New York',
+        "active": true
       },
       {
         name: 'Jane Smith',
@@ -133,7 +133,7 @@ export const endpoints = [
       }
     ],
     exampleRequest: {
-      age: { $gt: 25 },
+      "age": { "$gt": 25 },
     },
     exampleResponse: {
       success: true,
@@ -176,7 +176,7 @@ export const endpoints = [
       }
     ],
     exampleRequest: {
-      name: 'John Doe'
+      "name": 'John Doe'
     },
     exampleResponse: {
       success: true,
@@ -432,8 +432,15 @@ export const endpoints = [
       }
     ],
     exampleRequest: {
-      filter: { city: 'New York' },
-      update: { $set: { active: false } }
+      "filter": {
+        "city": "New York"
+      },
+      "update": {
+        "$set":
+        {
+          "active": false
+        }
+      }
     },
     exampleResponse: {
       success: true,
