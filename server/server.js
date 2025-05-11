@@ -256,7 +256,7 @@ router.delete('/users/many', async (req, res) => {
 });
 
 // 15. aggregate()
-router.post('/users/aggregate', async (req, res) => {
+router.get('/users/aggregate', async (req, res) => {
   try {
     console.log(req.body);
     const results = await User.aggregate(req.body);

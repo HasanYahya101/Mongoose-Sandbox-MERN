@@ -122,7 +122,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users based on query parameters',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'query',
         type: 'object',
@@ -164,7 +164,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Find a single user based on query parameters',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'query',
         type: 'object',
@@ -195,7 +195,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with a limit on the number of results',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'limit',
         type: 'number',
@@ -237,7 +237,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with a skip parameter for pagination',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'skip',
         type: 'number',
@@ -279,7 +279,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with sorting options',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'sortBy',
         type: 'object',
@@ -321,7 +321,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Get distinct values for a field',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'field',
         type: 'string',
@@ -345,7 +345,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Count users based on query parameters',
     category: 'Read',
-    params: [
+    body: [
       {
         name: 'query',
         type: 'object',
@@ -543,10 +543,10 @@ export const endpoints = [
     id: uuidv4(),
     name: 'aggregate',
     path: '/api/users/aggregate',
-    method: 'POST',
+    method: 'GET',
     description: 'Perform aggregation operations on users',
     category: 'Aggregate',
-    params: [
+    body: [
       {
         name: 'pipeline',
         type: 'array',
