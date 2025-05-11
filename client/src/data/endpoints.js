@@ -238,7 +238,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'find with skip',
     path: '/api/users/skip',
-    method: 'GET',
+    method: 'POST',
     description: 'Find users with a skip parameter for pagination',
     category: 'Read',
     params: [
@@ -281,7 +281,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'find with sort',
     path: '/api/users/sort',
-    method: 'GET',
+    method: 'POST',
     description: 'Find users with sorting options',
     category: 'Read',
     params: [
@@ -324,7 +324,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'distinct',
     path: '/api/users/distinct',
-    method: 'GET',
+    method: 'POST',
     description: 'Get distinct values for a field',
     category: 'Read',
     params: [
@@ -349,7 +349,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'countDocuments',
     path: '/api/users/count',
-    method: 'GET',
+    method: 'POST',
     description: 'Count users based on query parameters',
     category: 'Read',
     params: [

@@ -111,7 +111,7 @@ router.post('/users/limit', async (req, res) => {
 });
 
 // 6. find().skip()
-router.get('/users/skip', async (req, res) => {
+router.post('/users/skip', async (req, res) => {
   try {
     const skip = parseInt(req.body.skip);
     // if skip is not in the body
@@ -136,7 +136,7 @@ router.get('/users/skip', async (req, res) => {
 });
 
 // 7. find().sort()
-router.get('/users/sort', async (req, res) => {
+router.post('/users/sort', async (req, res) => {
   console.log(req.body);
   try {
     const users = await User.find().sort(req.body);
@@ -147,7 +147,7 @@ router.get('/users/sort', async (req, res) => {
 });
 
 // 8. distinct()
-router.get('/users/distinct', async (req, res) => {
+router.post('/users/distinct', async (req, res) => {
 
   try {
     const { field, query } = req.body;
@@ -179,7 +179,7 @@ router.get('/users/distinct', async (req, res) => {
 });
 
 // 9. countDocuments()
-router.get('/users/count', async (req, res) => {
+router.post('/users/count', async (req, res) => {
   try {
     const count = await User.countDocuments(req.body);
     res.status(200).json({ success: true, data: count });
