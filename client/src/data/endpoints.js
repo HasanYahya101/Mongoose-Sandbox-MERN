@@ -930,7 +930,7 @@ export const endpoints = [
     description: 'Get all data from the users collection',
     category: 'Utility',
     exampleRequest: {
-      "User Message": 'No request body needed. As, this will return all data from the users collection'
+      "User Message": 'No request body needed. As, this will return all data from the default users collection'
     },
     exampleResponse: {
       success: true,
@@ -963,7 +963,9 @@ export const endpoints = [
     method: 'DELETE',
     description: 'Clear all data in the users collection',
     category: 'Utility',
-    exampleRequest: {},
+    exampleRequest: {
+      "User Message": 'No request body needed. As, this will clear all data in the default users collection'
+    },
     exampleResponse: {
       success: true,
       message: 'Database reset'
@@ -976,7 +978,16 @@ export const endpoints = [
     method: 'POST',
     description: 'Seed the database with sample user data',
     category: 'Utility',
-    exampleRequest: {},
+    exampleRequest: {
+      "User Message": 'No request body needed. As, this will seed the default users collection with sample data. The sample data is as given below',
+      "sample-data": [
+        { name: 'Alice', email: 'alice@example.com', age: 28, city: 'New York', active: true },
+        { name: 'Bob', email: 'bob@example.com', age: 35, city: 'Chicago', active: true },
+        { name: 'Charlie', email: 'charlie@example.com', age: 17, city: 'New York', active: true },
+        { name: 'Dave', email: 'dave@example.com', age: 42, city: 'Seattle', active: false },
+        { name: 'Eve', email: 'eve@example.com', age: 16, city: 'Chicago', active: true }
+      ];
+    },
     exampleResponse: {
       success: true,
       data: [
