@@ -46,7 +46,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
     if (resetEndpoint) {
       onSelectEndpoint(resetEndpoint.id);
     }
-  })
+  }, []);
 
   return (
     <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-900">
