@@ -231,6 +231,9 @@ router.put('/users/replace', async (req, res) => {
 router.delete('/users/one', async (req, res) => {
   try {
     const filter = req.body.filter || {};
+    if (!filter) {
+      return res.status(400).json({ success: false, message: 'Filter param is required' });
+    }
     const result = await User.deleteOne(filter);
     res.status(200).json({ success: true, data: result });
   } catch (error) {
@@ -242,6 +245,9 @@ router.delete('/users/one', async (req, res) => {
 router.delete('/users/many', async (req, res) => {
   try {
     const filter = req.body.filter || {};
+    if (!filter) {
+      return res.status(400).json({ success: false, message: 'Filter param is required' });
+    }
     const result = await User.deleteMany(filter);
     res.status(200).json({ success: true, data: result });
   } catch (error) {
