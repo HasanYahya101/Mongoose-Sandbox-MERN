@@ -62,6 +62,7 @@ router.post('/users/batch', async (req, res) => {
 
 // 3. find()
 router.get('/users', async (req, res) => {
+  console.log(req.body);
   try {
     const users = await User.find(req.body);
     res.status(200).json({ success: true, data: users });
@@ -72,6 +73,7 @@ router.get('/users', async (req, res) => {
 
 // 4. findOne()
 router.get('/users/one', async (req, res) => {
+  console.log(req.body);
   try {
     const user = await User.findOne(req.body);
     if (!user) {
