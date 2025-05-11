@@ -132,7 +132,9 @@ export const endpoints = [
         defaultValue: '{}'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: {
+      age: { $gt: 25 },
+    },
     exampleResponse: {
       success: true,
       data: [
