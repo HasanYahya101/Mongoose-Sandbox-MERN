@@ -556,16 +556,16 @@ export const endpoints = [
     ],
     exampleRequest: [
       {
-        $match: {
-          active: true
+        "$match": {
+          "active": true
         }
       },
       {
-        $group:
+        "$group":
         {
-          _id: null,
-          averageAge: {
-            $avg: "$age"
+          "_id": null,
+          "averageAge": {
+            "$avg": "$age"
           }
         }
       }
