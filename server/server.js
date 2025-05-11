@@ -137,9 +137,9 @@ router.get('/users/skip', async (req, res) => {
 
 // 7. find().sort()
 router.get('/users/sort', async (req, res) => {
+  console.log(req.body);
   try {
-    const sortBy = req.query.sortBy ? JSON.parse(req.query.sortBy) : { createdAt: -1 };
-    const users = await User.find().sort(sortBy);
+    const users = await User.find().sort(req.body);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

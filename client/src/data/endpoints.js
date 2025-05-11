@@ -293,7 +293,9 @@ export const endpoints = [
         defaultValue: '{"createdAt": -1}'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: {
+      "age": -1
+    },
     exampleResponse: {
       success: true,
       data: [
