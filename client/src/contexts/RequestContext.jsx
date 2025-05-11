@@ -42,6 +42,12 @@ export const RequestProvider = ({ children }) => {
 
   useEffect(() => {
     console.log('Active Request:', activeRequest);
+    // convert the body to string and also print
+    if (typeof activeRequest.body === 'object') {
+      console.log('Body:', JSON.stringify(activeRequest.body));
+    } else {
+      console.log('Body:', activeRequest.body);
+    }
   }, [activeRequest]);
 
   const [response, setResponse] = useState(null);
