@@ -361,7 +361,9 @@ export const endpoints = [
         defaultValue: '{}'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: {
+      "active": true
+    },
     exampleResponse: {
       success: true,
       data: 5

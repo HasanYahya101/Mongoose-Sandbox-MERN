@@ -181,8 +181,7 @@ router.get('/users/distinct', async (req, res) => {
 // 9. countDocuments()
 router.get('/users/count', async (req, res) => {
   try {
-    const query = req.query.query ? JSON.parse(req.query.query) : {};
-    const count = await User.countDocuments(query);
+    const count = await User.countDocuments(req.body);
     res.status(200).json({ success: true, data: count });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
