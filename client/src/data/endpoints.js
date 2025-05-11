@@ -650,7 +650,9 @@ export const endpoints = [
     method: 'GET',
     description: 'Get all indexes for the users collection',
     category: 'Index',
-    exampleRequest: {},
+    exampleRequest: {
+      // No request body needed
+    },
     exampleResponse: {
       success: true,
       data: [
