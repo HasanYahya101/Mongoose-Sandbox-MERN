@@ -559,8 +559,7 @@ export const endpoints = [
         name: 'pipeline',
         type: 'array',
         required: false,
-        description: 'Aggregation pipeline stages in JSON format',
-        defaultValue: '[{"$group": {"_id": "$city", "count": {"$sum": 1}}}]'
+        description: 'Aggregation pipeline stages in JSON format'
       }
     ],
     exampleRequest: [
