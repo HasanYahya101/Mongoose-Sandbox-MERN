@@ -194,6 +194,12 @@ export const RequestProvider = ({ children }) => {
       console.error('Axios request error:', error);
 
       const errRes = error.response;
+      if (errRes && errRes.status === 403) {
+        toast.error('CORS error: Forbidden');
+      } else {
+        toast.error('Request failed');
+      }
+
       setResponse({
         status: errRes?.status || 500,
         statusText: errRes?.statusText || 'Error',
@@ -202,8 +208,6 @@ export const RequestProvider = ({ children }) => {
         time: 0,
         size: 0
       });
-
-      toast.error('Request failed');
     } finally {
       setIsLoading(false);
     }
