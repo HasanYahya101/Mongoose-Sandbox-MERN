@@ -25,11 +25,11 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true },
-  age: Number,
-  city: String,
-  active: Boolean,
+  name: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
+  age: { type: Number, required: true },
+  city: { type: String, required: true },
+  active: { type: Boolean, required: true },
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -394,7 +394,9 @@ router.post('/seed', async (req, res) => {
       { name: 'Eve', email: 'eve@example.com', age: 16, city: 'Chicago', active: true }
     ];
 
+    // Delete all existing users
     await User.deleteMany({});
+    // Insert sample users
     const users = await User.insertMany(sampleUsers);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
