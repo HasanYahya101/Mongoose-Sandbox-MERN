@@ -169,6 +169,7 @@ export const RequestProvider = ({ children }) => {
         headers,
         params,
         data: body,
+        withCredentials: true,
       });
 
       const endTime = Date.now();
