@@ -272,6 +272,14 @@ router.get('/users/aggregate', async (req, res) => {
 router.post('/users/index', async (req, res) => {
   try {
     const { field, options } = req.body;
+    if (!field || typeof field !== 'string') {
+      return res.status(400).json({ success: false, message: 'Field (param) is required and must be a string' });
+    }
+
+    if (!options) {
+      return res.status(400).json({ success: false, message: 'Options (param) is required and must be an object' });
+    }
+
     const indexDef = {};
     indexDef[field] = 1;
     const result = await User.collection.createIndex(indexDef, options || {});
