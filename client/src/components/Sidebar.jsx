@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getEndpointsByCategory } from '../data/endpoints';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronRight, Database, Clock, BookOpen, Package, Settings, PlayCircle } from 'lucide-react';
+import { ChevronDown, ChevronRight, Clock, Package, PlayCircle } from 'lucide-react';
 
 const Sidebar = ({ onSelectEndpoint }) => {
   const [searchQuery, setSearchQuery] = useState('');
