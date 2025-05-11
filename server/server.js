@@ -8,6 +8,8 @@ const app = express();
 
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
+console.log('CLIENT_URL:', CLIENT_URL);
+
 app.use(cors({
   origin: `${CLIENT_URL}`,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
