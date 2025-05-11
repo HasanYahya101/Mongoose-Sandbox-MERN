@@ -175,7 +175,9 @@ export const endpoints = [
         defaultValue: '{}'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: {
+      name: 'John Doe'
+    },
     exampleResponse: {
       success: true,
       data: {
