@@ -3,10 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
+const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const defaultRequest = {
   id: uuidv4(),
   name: 'New Request',
-  url: 'http://localhost:5000/api',
+  url: `${BACKEND_URL}/api`,
   method: 'GET',
   headers: {},
   params: {},
