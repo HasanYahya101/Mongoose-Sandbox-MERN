@@ -342,6 +342,9 @@ router.delete('/users/findAndDelete', async (req, res) => {
 router.post('/users/bulk', async (req, res) => {
   try {
     const operations = req.body.operations || [];
+    if (!operations || !Array.isArray(operations)) {
+      return res.status(400).json({ success: false, message: 'Operations (param) is required and must be an array' });
+    }
     const result = await User.bulkWrite(operations);
     res.status(200).json({ success: true, data: result });
   } catch (error) {
