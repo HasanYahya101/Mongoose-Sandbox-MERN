@@ -148,9 +148,30 @@ router.get('/users/sort', async (req, res) => {
 
 // 8. distinct()
 router.get('/users/distinct', async (req, res) => {
+
   try {
-    const field = req.query.field || 'city';
-    const values = await User.distinct(field);
+    const { field, query } = req.body;
+    console.log('Field:', field);
+    console.log('Query:', query);
+    // if field is not in the body
+    if (!field) {
+      return res.status(400).json({ success: false, message: 'Field (param) is required' });
+    }
+    // if field is not a string
+    if (typeof field !== 'string') {
+      return res.status(400).json({ success: false, message: 'Field must be a string' });
+    }
+
+    if (!query) {
+      const values = await User.distinct(field);
+      res.status(200).json({ success: true, data: values });
+    }
+
+    if (typeof query !== 'object') {
+      return res.status(400).json({ success: false, message: 'Query must be an object' });
+    }
+
+    const values = await User.distinct(field, query);
     res.status(200).json({ success: true, data: values });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
