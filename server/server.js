@@ -88,7 +88,21 @@ router.get('/users/one', async (req, res) => {
 // 5. find().limit()
 router.get('/users/limit', async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 5;
+    const limit = parseInt(req.body.limit);
+    // if limit is not in the body
+    if (!limit) {
+      return res.status(400).json({ success: false, message: 'Limit (param) is required' });
+    }
+    // if limit is not a number
+    if (isNaN(limit)) {
+      return res.status(400).json({ success: false, message: 'Limit must be a number' });
+    }
+    // if limit is a negative number
+    console.log('Limit:', limit);
+    if (limit < 0) {
+      return res.status(400).json({ success: false, message: 'Limit must be a positive number or zero' });
+    }
+    // Find all users and limit the result set
     const users = await User.find().limit(limit);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
@@ -99,7 +113,21 @@ router.get('/users/limit', async (req, res) => {
 // 6. find().skip()
 router.get('/users/skip', async (req, res) => {
   try {
-    const skip = parseInt(req.query.skip) || 0;
+    const skip = parseInt(req.body.skip);
+    // if skip is not in the body
+    if (!skip) {
+      return res.status(400).json({ success: false, message: 'Skip (param) is required' });
+    }
+    // if skip is not a number
+    if (isNaN(skip)) {
+      return res.status(400).json({ success: false, message: 'Skip must be a number' });
+    }
+    // if skip is a negative number
+    console.log('Skip:', skip);
+    if (skip < 0) {
+      return res.status(400).json({ success: false, message: 'Skip must be a positive number or zero' });
+    }
+    // Find all users and skip the first n results
     const users = await User.find().skip(skip);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
