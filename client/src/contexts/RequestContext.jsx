@@ -146,7 +146,21 @@ export const RequestProvider = ({ children }) => {
       // Prepare params
       const params = {};
       Object.entries(activeRequest.params).forEach(([key, value]) => {
-        params[key] = replaceEnvironmentVariables(value);
+        let replaced = replaceEnvironmentVariables(value);
+
+        // Special handling for 'pipeline' param
+        if (key === 'pipeline') {
+          try {
+            // Parse if it's a valid JSON string
+            const parsed = typeof replaced === 'string' ? JSON.parse(replaced) : replaced;
+            params[key] = JSON.stringify(parsed);
+          } catch (e) {
+            // Fallback if parsing fails
+            params[key] = replaced;
+          }
+        } else {
+          params[key] = replaced;
+        }
       });
 
       // Prepare body
@@ -212,6 +226,7 @@ export const RequestProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
 
   const addCollection = (name, description) => {
     const newCollection = {
