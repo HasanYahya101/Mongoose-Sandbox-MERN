@@ -38,6 +38,7 @@ export const endpoints = [
         type: 'boolean',
         required: false,
         description: 'User active status',
+        defaultValue: true
       }
     ],
     exampleRequest: {
@@ -122,12 +123,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users based on query parameters',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'query',
         type: 'object',
         required: false,
         description: 'Query criteria in JSON format',
+        defaultValue: '{}'
       }
     ],
     exampleRequest: {
@@ -164,12 +166,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Find a single user based on query parameters',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'query',
         type: 'object',
         required: false,
         description: 'Query criteria in JSON format',
+        defaultValue: '{}'
       }
     ],
     exampleRequest: {
@@ -195,12 +198,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with a limit on the number of results',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'limit',
         type: 'number',
         required: false,
         description: 'Maximum number of documents to return',
+        defaultValue: 5
       }
     ],
     exampleRequest: {
@@ -237,12 +241,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with a skip parameter for pagination',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'skip',
         type: 'number',
         required: false,
         description: 'Number of documents to skip',
+        defaultValue: 0
       }
     ],
     exampleRequest: {
@@ -279,12 +284,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Find users with sorting options',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'sortBy',
         type: 'object',
         required: false,
         description: 'Sort criteria in JSON format',
+        defaultValue: '{"createdAt": -1}'
       }
     ],
     exampleRequest: {
@@ -321,12 +327,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Get distinct values for a field',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'field',
         type: 'string',
         required: false,
         description: 'Field name to get distinct values for',
+        defaultValue: 'city'
       }
     ],
     exampleRequest: {
@@ -345,12 +352,13 @@ export const endpoints = [
     method: 'GET',
     description: 'Count users based on query parameters',
     category: 'Read',
-    body: [
+    params: [
       {
         name: 'query',
         type: 'object',
         required: false,
         description: 'Query criteria in JSON format',
+        defaultValue: '{}'
       }
     ],
     exampleRequest: {
@@ -552,20 +560,21 @@ export const endpoints = [
         type: 'array',
         required: false,
         description: 'Aggregation pipeline stages in JSON format',
+        defaultValue: '[{"$group": {"_id": "$city", "count": {"$sum": 1}}}]'
       }
     ],
     exampleRequest: [
       {
-        "$match": {
-          "active": true
+        $match: {
+          active: true
         }
       },
       {
-        "$group":
+        $group:
         {
-          "_id": null,
-          "averageAge": {
-            "$avg": "$age"
+          _id: null,
+          averageAge: {
+            $avg: "$age"
           }
         }
       }
@@ -599,6 +608,7 @@ export const endpoints = [
         type: 'object',
         required: false,
         description: 'Index options',
+        defaultValue: {}
       }
     ],
     exampleRequest: {
@@ -685,6 +695,7 @@ export const endpoints = [
         type: 'object',
         required: false,
         description: 'Options for the operation',
+        defaultValue: { returnDocument: 'after' }
       }
     ],
     exampleRequest: {
@@ -815,6 +826,7 @@ export const endpoints = [
         type: 'object',
         required: false,
         description: 'Options for the operation',
+        defaultValue: { returnDocument: 'after' }
       }
     ],
     exampleRequest: {
