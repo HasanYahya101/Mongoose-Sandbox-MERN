@@ -271,7 +271,9 @@ router.get('/users/aggregate', async (req, res) => {
 // 16. createIndex()
 router.post('/users/index', async (req, res) => {
   try {
+
     const { field, options } = req.body;
+
     if (!field || typeof field !== 'string') {
       return res.status(400).json({ success: false, message: 'Field (param) is required and must be a string' });
     }
