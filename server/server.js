@@ -72,7 +72,7 @@ router.post('/users/find', async (req, res) => {
 });
 
 // 4. findOne()
-router.get('/users/one', async (req, res) => {
+router.post('/users/one', async (req, res) => {
   console.log(req.body);
   try {
     const user = await User.findOne(req.body);

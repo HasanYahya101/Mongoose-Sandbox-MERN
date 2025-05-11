@@ -163,7 +163,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'findOne',
     path: '/api/users/one',
-    method: 'GET',
+    method: 'POST',
     description: 'Find a single user based on query parameters',
     category: 'Read',
     params: [
