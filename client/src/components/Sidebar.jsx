@@ -50,8 +50,6 @@ const Sidebar = ({ onSelectEndpoint }) => {
 
   return (
     <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-900">
-
-
       <div className="overflow-y-auto flex-1 p-2">
         {activeTab === 'endpoints' && (
           <>
