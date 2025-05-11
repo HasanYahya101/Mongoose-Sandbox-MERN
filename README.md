@@ -67,7 +67,7 @@ cd Mongoose-Sandbox-MERN
 ```
 ### 2. Add Environment Variables
 
-then create a .env file in both `client` and `server` folders and enter your `URL` and `MongoDB_URI` in them.
+Create a .env file in both `client` and `server` folders and enter your `URL` and `MongoDB_URI` in them.
 
 ### 3. Install Packages and run Project
 
