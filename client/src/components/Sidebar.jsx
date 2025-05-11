@@ -61,7 +61,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
 
   useEffect(() => {
     // select the reset database endpoint by default
-    const resetEndpoint = endpointsByCategory['Utility'].find(endpoint => endpoint.name === 'resetDatabase');
+    const resetEndpoint = rawEndpointsByCategory['Utility'].find(endpoint => endpoint.name === 'resetDatabase');
     if (resetEndpoint) {
       onSelectEndpoint(resetEndpoint.id);
     }
