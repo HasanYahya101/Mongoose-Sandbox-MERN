@@ -892,7 +892,9 @@ export const endpoints = [
     method: 'DELETE',
     description: 'Drop a collection',
     category: 'Collection',
-    exampleRequest: {},
+    exampleRequest: {
+      "User Message": 'No request body needed. As, this will drop the current collection (users)'
+    },
     exampleResponse: {
       success: true,
       message: 'Collection drop would occur here'
@@ -905,7 +907,9 @@ export const endpoints = [
     method: 'GET',
     description: 'List all collections in the database',
     category: 'Collection',
-    exampleRequest: {},
+    exampleRequest: {
+      "User Message": 'No request body needed. As, this will list all collections'
+    },
     exampleResponse: {
       success: true,
       data: [
