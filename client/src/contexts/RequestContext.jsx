@@ -48,6 +48,9 @@ export const RequestProvider = ({ children }) => {
     } else {
       console.log('Body:', activeRequest.body);
     }
+
+    // print url
+    console.log('URL:', parseUrl(activeRequest.url));
   }, [activeRequest]);
 
   const [response, setResponse] = useState(null);
