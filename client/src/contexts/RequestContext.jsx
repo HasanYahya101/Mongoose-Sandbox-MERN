@@ -163,6 +163,15 @@ export const RequestProvider = ({ children }) => {
         }
       });
 
+      // add the params to the url
+      const urlWithParams = new URL(url);
+      Object.entries(params).forEach(([key, value]) => {
+        urlWithParams.searchParams.append(key, value);
+      }
+      );
+      const finalUrl = urlWithParams.toString();
+      console.log('Final URL:', finalUrl);
+
       // Prepare body
       let body = activeRequest.body;
       if (typeof body === 'string') {
@@ -178,10 +187,10 @@ export const RequestProvider = ({ children }) => {
 
       // Send actual request using axios
       const res = await axios({
-        url,
-        method,
-        headers,
-        params,
+        url: urlWithParams,
+        method: method,
+        headers: headers,
+        params: params,
         data: body,
         withCredentials: true,
       });
