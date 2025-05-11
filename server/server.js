@@ -423,7 +423,7 @@ router.delete('/collections/drop', async (req, res) => {
     await User.collection.drop();
     res.status(200).json({
       success: true,
-      message: 'Collection drop would occur here'
+      message: 'Collection successfully dropped',
     });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
