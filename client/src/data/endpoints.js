@@ -929,7 +929,9 @@ export const endpoints = [
     method: 'GET',
     description: 'Get all data from the users collection',
     category: 'Utility',
-    exampleRequest: {},
+    exampleRequest: {
+      "User Message": 'No request body needed. As, this will return all data from the users collection'
+    },
     exampleResponse: {
       success: true,
       data: [
