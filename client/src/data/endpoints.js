@@ -391,8 +391,13 @@ export const endpoints = [
       }
     ],
     exampleRequest: {
-      filter: { email: 'john@example.com' },
-      update: { $set: { age: 31, city: 'Chicago' } }
+      "filter": { "email": "john@example.com" },
+      "update": {
+        "$set": {
+          "age": 31,
+          "city": "Chicago"
+        }
+      }
     },
     exampleResponse: {
       success: true,
