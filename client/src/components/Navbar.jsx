@@ -26,13 +26,13 @@ const Navbar = ({ toggleSidebar }) => {
           >
             <Database size={24} className="text-blue-500" />
           </motion.div>
-          <h1 className="text-xl font-semibold text-slate-800 dark:text-white">MongoDB API Tester</h1>
+          <h1 className="text-xl font-semibold text-slate-800 dark:text-white">Mongoose Sandbox</h1>
         </div>
       </div>
 
       <div className="flex items-center space-x-2">
         <Button
-          onClick={()=>{
+          onClick={() => {
             window.open('https://github.com/HasanYahya101/Mongoose-Sandbox-MERN', '_blank');
           }}
           target="_blank"
