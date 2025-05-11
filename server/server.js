@@ -86,7 +86,7 @@ router.post('/users/one', async (req, res) => {
 });
 
 // 5. find().limit()
-router.get('/users/limit', async (req, res) => {
+router.post('/users/limit', async (req, res) => {
   try {
     const limit = parseInt(req.body.limit);
     // if limit is not in the body

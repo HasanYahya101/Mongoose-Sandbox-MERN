@@ -195,7 +195,7 @@ export const endpoints = [
     id: uuidv4(),
     name: 'find with limit',
     path: '/api/users/limit',
-    method: 'GET',
+    method: 'POST',
     description: 'Find users with a limit on the number of results',
     category: 'Read',
     params: [
