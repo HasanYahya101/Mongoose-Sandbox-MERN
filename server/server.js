@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const qs = require('qs');
 require('dotenv').config();
 
 const app = express();
@@ -63,9 +64,10 @@ router.post('/users/batch', async (req, res) => {
 // 3. find()
 router.get('/users', async (req, res) => {
   try {
-    const query = req.query.query ? JSON.parse(req.query.query) : {};
+    const parsedQuery = qs.parse(req.query); // parse nested query params
+    const query = parsedQuery.query ? JSON.parse(parsedQuery.query) : parsedQuery;
+
     if (query.age) {
-      // Handle cases where age is an object (e.g., {$gte: value})
       if (typeof query.age === 'object') {
         for (const key in query.age) {
           if (!isNaN(query.age[key])) {
@@ -76,12 +78,14 @@ router.get('/users', async (req, res) => {
         query.age = Number(query.age);
       }
     }
+
     const users = await User.find(query);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
 });
+
 
 // 4. findOne()
 router.get('/users/one', async (req, res) => {
