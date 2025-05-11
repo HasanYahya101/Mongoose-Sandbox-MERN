@@ -40,6 +40,10 @@ export const RequestProvider = ({ children }) => {
     return savedRequest ? JSON.parse(savedRequest) : defaultRequest;
   });
 
+  useEffect(() => {
+    console.log('Active Request:', activeRequest);
+  }, [activeRequest]);
+
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
