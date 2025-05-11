@@ -371,6 +371,24 @@ router.put('/users/findAndReplace', async (req, res) => {
 router.put('/collections/rename', async (req, res) => {
   try {
     const { oldName, newName } = req.body;
+    if (!oldName || !newName) {
+      return res.status(400).json({ success: false, message: 'Both oldName and newName are required' });
+    }
+    if (typeof oldName !== 'string' || typeof newName !== 'string') {
+      return res.status(400).json({ success: false, message: 'Both oldName and newName must be strings' });
+    }
+    if (oldName === newName) {
+      return res.status(400).json({ success: false, message: 'oldName and newName cannot be the same' });
+    }
+    if (oldName.includes('.')) {
+      return res.status(400).json({ success: false, message: 'oldName cannot contain a dot (.)' });
+    }
+    if (newName.includes('.')) {
+      return res.status(400).json({ success: false, message: 'newName cannot contain a dot (.)' });
+    }
+    if (newName.length < 3 || oldName.length < 3) {
+      return res.status(400).json({ success: false, message: 'oldName and newName must be at least 3 characters long' });
+    }
     const db = mongoose.connection.db;
     const oldCollectionExists = await db.listCollections({ name: oldName }).hasNext();
     if (!oldCollectionExists) {
