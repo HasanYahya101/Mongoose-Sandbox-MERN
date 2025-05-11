@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import qs from 'qs';
 
 const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
@@ -177,9 +178,13 @@ export const RequestProvider = ({ children }) => {
 
       const startTime = Date.now();
 
+      const queryString = qs.stringify(body, { indices: false });
+      const url_new = url + '?' + queryString;
+      console.log('Final URL:', url_new);
+
       // Send actual request using axios
       const res = await axios({
-        url,
+        url: url_new,
         method,
         headers,
         params,
