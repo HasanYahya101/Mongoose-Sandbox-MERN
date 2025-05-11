@@ -259,7 +259,7 @@ router.delete('/users/many', async (req, res) => {
 router.get('/users/aggregate', async (req, res) => {
   try {
     console.log(req.body);
-    const results = await User.aggregate(req.body);
+    const results = await User.aggregate(req.params);
     res.status(200).json({ success: true, data: results });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

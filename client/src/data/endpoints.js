@@ -546,7 +546,7 @@ export const endpoints = [
     method: 'GET',
     description: 'Perform aggregation operations on users',
     category: 'Aggregate',
-    body: [
+    params: [
       {
         name: 'pipeline',
         type: 'array',
