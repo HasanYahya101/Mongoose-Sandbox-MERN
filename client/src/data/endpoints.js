@@ -986,7 +986,7 @@ export const endpoints = [
         { name: 'Charlie', email: 'charlie@example.com', age: 17, city: 'New York', active: true },
         { name: 'Dave', email: 'dave@example.com', age: 42, city: 'Seattle', active: false },
         { name: 'Eve', email: 'eve@example.com', age: 16, city: 'Chicago', active: true }
-      ];
+      ]
     },
     exampleResponse: {
       success: true,
