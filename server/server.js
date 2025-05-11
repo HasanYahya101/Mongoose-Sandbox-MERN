@@ -259,10 +259,6 @@ router.delete('/users/many', async (req, res) => {
 router.get('/users/aggregate', async (req, res) => {
   try {
     console.log(req.body);
-    //  if req.body is not an array or is empty array
-    if (!Array.isArray(req.body)) {
-      return res.status(400).json({ success: false, message: 'Aggregation pipeline is required' });
-    }
     const results = await User.aggregate(req.body);
     res.status(200).json({ success: true, data: results });
   } catch (error) {
