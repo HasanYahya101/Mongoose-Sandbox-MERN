@@ -138,8 +138,13 @@ router.get('/users/skip', async (req, res) => {
 // 7. find().sort()
 router.get('/users/sort', async (req, res) => {
   console.log(req.body);
+  const { field, query } = req.body;
+  // if query is not in the body
+  if (!query) {
+    query = {};
+  }
   try {
-    const users = await User.find().sort(req.body);
+    const users = await User.find().sort(field, query);
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

@@ -336,7 +336,10 @@ export const endpoints = [
         defaultValue: 'city'
       }
     ],
-    exampleRequest: {},
+    exampleRequest: {
+      "field": "name",
+      "query": { "active": true }
+    },
     exampleResponse: {
       success: true,
       data: ['New York', 'Boston', 'Chicago', 'Seattle']
