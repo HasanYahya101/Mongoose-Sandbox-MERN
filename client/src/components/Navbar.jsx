@@ -26,7 +26,7 @@ const Navbar = ({ toggleSidebar }) => {
           >
             <Database size={24} className="text-blue-500" />
           </motion.div>
-          <h1 className="text-xl font-semibold text-slate-800 dark:text-white truncate max-w-full">MongoDB API Tester</h1>
+          <h1 className="text-xl font-semibold text-slate-800 dark:text-white">MongoDB API Tester</h1>
         </div>
       </div>
 
