@@ -9,6 +9,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedTabId, setSelectedTabId] = useState(null);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+      setSidebarOpen(true);
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
@@ -16,7 +29,7 @@ const Layout = () => {
 
       <div className="flex-1 flex overflow-hidden">
         <AnimatePresence>
-          {sidebarOpen && (
+          {sidebarOpen && isMobile === false && isMobileSidebarOpen === false(
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 280, opacity: 1 }}
@@ -25,6 +38,23 @@ const Layout = () => {
               className="h-full border-r border-slate-200 dark:border-slate-700 overflow-y-auto"
             >
               <Sidebar onSelectEndpoint={(endpointId) => setSelectedTabId(endpointId)} />
+            </motion.div>
+          )}
+          {isMobileSidebarOpen && (
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-y-0 left-0 z-50 w-64 bg-slate-50 dark:bg-slate-900 shadow-lg md:hidden"
+            >
+              <Sidebar onSelectEndpoint={(endpointId) => setSelectedTabId(endpointId)} />
+              <button
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="absolute top-4 right-4 text-slate-500"
+              >
+                ✕
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
