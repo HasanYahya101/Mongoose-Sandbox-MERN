@@ -47,7 +47,18 @@ const Layout = () => {
           )}
         </AnimatePresence>
 
-        <div className="flex-1 overflow-hidden">
+        <motion.div
+          className='flex-1 relative'
+          initial={false}
+          animate={{
+            marginLeft: sidebarOpen ? "0px" : "0",
+            width: sidebarOpen ? "calc(100% - 280px)" : "100%",
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeInOut",
+          }}
+        >
           <PanelGroup direction="vertical">
             <Panel defaultSize={50} minSize={20}>
               <RequestPanel selectedEndpointId={selectedTabId} />
@@ -59,7 +70,7 @@ const Layout = () => {
               <ResponsePanel />
             </Panel>
           </PanelGroup>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
