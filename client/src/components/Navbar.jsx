@@ -8,11 +8,11 @@ const Navbar = ({ toggleSidebar }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="h-14 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 z-10">
+    <header className="h-14 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 z-40 relative">
       <div className="flex items-center space-x-2">
         <button
           onClick={toggleSidebar}
-          className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors rounded-full"
+          className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
           aria-label="Toggle sidebar"
         >
           <Menu size={20} className="text-slate-600 dark:text-slate-300" />
@@ -57,7 +57,7 @@ const Navbar = ({ toggleSidebar }) => {
           )}
         </Button>
       </div>
-    </header >
+    </header>
   );
 };
 
