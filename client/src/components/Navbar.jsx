@@ -31,22 +31,22 @@ const Navbar = ({ toggleSidebar }) => {
         >
           <Menu size={20} className="text-slate-600 dark:text-slate-300" />
         </button>
+        {isVisible && (
+          <div className="flex items-center space-x-2">
 
-        <div className="flex items-center space-x-2">
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "loop", repeatDelay: 5 }}
+            >
+              <Database size={24} className="text-blue-500" />
+            </motion.div>
 
-          <motion.div
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "loop", repeatDelay: 5 }}
-          >
-            <Database size={24} className="text-blue-500" />
-          </motion.div>
-          {isVisible && (
             <h1 className="text-xl font-semibold text-slate-800 dark:text-white"
             >MongoDB API Tester</h1>
-          )}
-        </div>
 
+          </div>
+        )}
       </div>
 
       <div className="flex items-center space-x-2">
