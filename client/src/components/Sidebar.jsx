@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getEndpointsByCategory } from '../data/endpoints';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronRight, Clock, Package, PlayCircle } from 'lucide-react';
+import { endpoints } from '../data/endpoints';
 
 const Sidebar = ({ onSelectEndpoint }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -61,9 +62,17 @@ const Sidebar = ({ onSelectEndpoint }) => {
 
   useEffect(() => {
     // select the reset database endpoint by default
-    const resetEndpoint = rawEndpointsByCategory['Utility'].find(endpoint => endpoint.name === 'resetDatabase');
-    if (resetEndpoint) {
-      onSelectEndpoint(resetEndpoint.id);
+    const id = localStorage.getItem('selectedEndpointId');
+    // if id is not null and exists in endpoints, select it
+    if (id && endpoints.some(endpoint => endpoint.id === id)) {
+      onSelectEndpoint(id);
+      localStorage.setItem('selectedEndpointId', id);
+    } else {
+      const resetEndpoint = rawEndpointsByCategory['Utility'].find(endpoint => endpoint.name === 'resetDatabase');
+      if (resetEndpoint) {
+        onSelectEndpoint(resetEndpoint.id);
+        localStorage.setItem('selectedEndpointId', resetEndpoint.id);
+      }
     }
   }, []);
 
@@ -115,7 +124,10 @@ const Sidebar = ({ onSelectEndpoint }) => {
                       {endpoints.map(endpoint => (
                         <button
                           key={endpoint.id}
-                          onClick={() => onSelectEndpoint(endpoint.id)}
+                          onClick={() => {
+                            onSelectEndpoint(endpoint.id);
+                            localStorage.setItem('selectedEndpointId', endpoint.id);
+                          }}
                           className="w-full text-left p-2 text-sm rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center group my-1"
                         >
                           <span className={`mr-2 font-medium ${getMethodColor(endpoint.method)}`}>
