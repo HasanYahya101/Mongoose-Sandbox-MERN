@@ -1,48 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import Sidebar from './Sidebar';
 import RequestPanel from './RequestPanel';
 import ResponsePanel from './ResponsePanel';
 import Navbar from './Navbar';
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+  Sidebar as ShadcnSidebar,
+  SidebarContent,
+} from './ui/sidebar';
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedTabId, setSelectedTabId] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newIsDesktop = window.innerWidth >= 1024;
+      setIsDesktop(newIsDesktop);
+      // If switching to desktop, ensure sidebar is open
+      if (newIsDesktop) {
+        setSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
       <div className="flex-1 flex overflow-hidden relative">
-        <AnimatePresence>
-          {sidebarOpen && (
-            <motion.div
-              initial={{ x: -280, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -280, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className={`
-                h-full border-r border-slate-200 dark:border-slate-700 overflow-y-auto
-                lg:static lg:w-[280px]
-                fixed inset-y-0 left-0 z-30 w-[280px] bg-slate-50 dark:bg-slate-900
-              `}
-            >
+        {isDesktop ? (
+          <ShadcnSidebar
+            className="border-r border-slate-200 dark:border-slate-700"
+            collapsible="offcanvas"
+          >
+            <SidebarContent>
               <Sidebar onSelectEndpoint={(endpointId) => setSelectedTabId(endpointId)} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </SidebarContent>
+          </ShadcnSidebar>
+        ) : (
+          <AnimatePresence>
+            {sidebarOpen && (
+              <motion.div
+                initial={{ x: -280, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -280, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="h-full border-r border-slate-200 dark:border-slate-700 overflow-y-auto fixed inset-y-0 left-0 z-30 w-[280px] bg-slate-50 dark:bg-slate-900"
+              >
+                <Sidebar onSelectEndpoint={(endpointId) => setSelectedTabId(endpointId)} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
 
         {/* Overlay for mobile */}
         <AnimatePresence>
-          {sidebarOpen && (
+          {!isDesktop && sidebarOpen && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-20"
+              className="fixed inset-0 bg-black/80 dark:bg-black/60 z-20"
             />
           )}
         </AnimatePresence>

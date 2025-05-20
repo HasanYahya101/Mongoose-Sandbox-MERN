@@ -3,6 +3,7 @@ import { Menu, Moon, Sun, Database, Copy, ChevronsLeft, ChevronsRight, Github } 
 import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import { SidebarTrigger } from './ui/sidebar';
 
 const Navbar = ({ toggleSidebar }) => {
   const { theme, toggleTheme } = useTheme();
@@ -21,19 +22,38 @@ const Navbar = ({ toggleSidebar }) => {
     };
   }, []);
 
+  const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 1024);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const newIsDesktop = window.innerWidth >= 1024;
+      setIsDesktop(newIsDesktop);
+      // If switching to desktop, ensure sidebar is open
+      if (newIsDesktop) {
+        setSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <header className="h-14 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 z-40 relative">
       <div className="flex items-center space-x-2">
-        <button
-          onClick={toggleSidebar}
-          className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
-          aria-label="Toggle sidebar"
-        >
-          <Menu size={20} className="text-slate-600 dark:text-slate-300" />
-        </button>
+        {isDesktop ? (
+          <SidebarTrigger />
+        ) : (
+          <button
+            onClick={toggleSidebar}
+            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+            aria-label="Toggle sidebar"
+          >
+            <Menu size={20} className="text-slate-600 dark:text-slate-300" />
+          </button>
+        )}
         {isVisible && (
           <div className="flex items-center space-x-2">
-
             <motion.div
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
@@ -41,10 +61,7 @@ const Navbar = ({ toggleSidebar }) => {
             >
               <Database size={24} className="text-blue-500" />
             </motion.div>
-
-            <h1 className="text-xl font-semibold text-slate-800 dark:text-white"
-            >MongoDB API Tester</h1>
-
+            <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">Mongoose Sandbox</span>
           </div>
         )}
       </div>

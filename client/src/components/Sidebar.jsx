@@ -3,6 +3,7 @@ import { getEndpointsByCategory } from '../data/endpoints';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronRight, Clock, Package, PlayCircle } from 'lucide-react';
 import { endpoints } from '../data/endpoints';
+import { SidebarInput, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from './ui/sidebar';
 
 const Sidebar = ({ onSelectEndpoint }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,9 +11,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
 
   const endpointsByCategory = Object.entries(rawEndpointsByCategory).reduce((acc, [category, endpoints]) => {
     const lowerQuery = searchQuery.toLowerCase();
-
     const categoryMatches = category.toLowerCase().includes(lowerQuery);
-
     const filtered = endpoints.filter(endpoint =>
       categoryMatches || endpoint.name.toLowerCase().includes(lowerQuery)
     );
@@ -24,9 +23,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
     return acc;
   }, {});
 
-
   const [expandedCategories, setExpandedCategories] = useState(() => {
-    // Start with all categories expanded
     const expanded = {};
     Object.keys(endpointsByCategory).forEach(category => {
       expanded[category] = true;
@@ -61,9 +58,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
   };
 
   useEffect(() => {
-    // select the reset database endpoint by default
     const id = localStorage.getItem('selectedEndpointId');
-    // if id is not null and exists in endpoints, select it
     if (id && endpoints.some(endpoint => endpoint.id === id)) {
       onSelectEndpoint(id);
       localStorage.setItem('selectedEndpointId', id);
@@ -91,19 +86,17 @@ const Sidebar = ({ onSelectEndpoint }) => {
 
   return (
     <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-900">
-      <div className="overflow-y-auto flex-1 p-2 mt-14 lg:mt-0">
+      <div className="overflow-y-auto flex-1 p-2 mt-14">
         {activeTab === 'endpoints' && (
           <>
             {isLg === true && (<div className="mb-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search APIs..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full p-2 pl-3 pr-8 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Search APIs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full p-2 mt-1 pl-3 pr-8 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
             </div>)}
             {!isLg && (
               <div className="mt-1.5"></div>)
@@ -144,7 +137,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
                             onSelectEndpoint(endpoint.id);
                             localStorage.setItem('selectedEndpointId', endpoint.id);
                           }}
-                          className="w-full text-left p-2 text-sm rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center group my-1"
+                          className="w-full text-left p-2 text-sm rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center group/see my-1"
                         >
                           <span className={`mr-2 font-medium ${getMethodColor(endpoint.method)}`}>
                             {endpoint.method}
@@ -154,7 +147,7 @@ const Sidebar = ({ onSelectEndpoint }) => {
                           </span>
                           <PlayCircle
                             size={16}
-                            className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="text-blue-500 opacity-0 group-hover/see:opacity-100 transition-opacity"
                           />
                         </button>
                       ))}
@@ -166,19 +159,6 @@ const Sidebar = ({ onSelectEndpoint }) => {
           </>
         )}
 
-        {activeTab === 'history' && (
-          <div className="p-4 text-center text-slate-500 dark:text-slate-400">
-            <Clock size={36} className="mx-auto mb-2 opacity-50" />
-            <p>Your request history will appear here</p>
-          </div>
-        )}
-
-        {activeTab === 'collections' && (
-          <div className="p-4 text-center text-slate-500 dark:text-slate-400">
-            <Package size={36} className="mx-auto mb-2 opacity-50" />
-            <p>Save requests in collections to reuse them later</p>
-          </div>
-        )}
       </div>
     </div>
   );
