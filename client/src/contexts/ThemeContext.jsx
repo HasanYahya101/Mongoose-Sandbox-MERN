@@ -16,7 +16,7 @@ export const useTheme = () => useContext(ThemeContext);
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     try {
-      const savedTheme = localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('mongoose-theme');
       // get the system theme
       const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (!savedTheme) {
@@ -38,7 +38,7 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('theme', JSON.stringify(theme));
+      localStorage.setItem('mongoose-theme', JSON.stringify(theme));
 
       if (theme.isDark) {
         document.documentElement.classList.add('dark');
