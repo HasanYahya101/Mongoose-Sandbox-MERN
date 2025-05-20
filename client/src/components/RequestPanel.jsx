@@ -7,6 +7,33 @@ import { Send, PlusCircle, Save, Code, Database, PlayCircle, ChevronDown, Chevro
 import MethodSelector from './request/MethodSelector';
 import { useTheme } from '../contexts/ThemeContext';
 
+const customDarkTheme = {
+  base: 'vs-dark',
+  inherit: true,
+  rules: [
+    { token: '', foreground: 'D4D4D4', background: '1e293b' },
+    { token: 'comment', foreground: '6A9955' },
+    { token: 'string', foreground: '9CDCFE' },
+    { token: 'keyword', foreground: '569CD6' },
+    { token: 'number', foreground: 'B5CEA8' },
+    { token: 'delimiter', foreground: 'D4D4D4' },
+  ],
+  colors: {
+    'editor.background': '#1e293b',
+    'editor.foreground': '#D4D4D4',
+    'editor.lineHighlightBackground': '#2d3a4f',
+    'editor.selectionBackground': '#404E67',
+    'editor.inactiveSelectionBackground': '#3A4459',
+    'editorCursor.foreground': '#D4D4D4',
+    'editorWhitespace.foreground': '#2d3a4f',
+    'editorLineNumber.foreground': '#858585',
+    'editor.selectionHighlightBackground': '#34425980',
+    'editor.wordHighlightBackground': '#34425980',
+    'editor.wordHighlightStrongBackground': '#34425980',
+    'editorBracketMatch.background': '#34425980',
+  }
+};
+
 const RequestPanel = ({ selectedEndpointId }) => {
   const { theme } = useTheme();
   const {
@@ -247,7 +274,10 @@ const RequestPanel = ({ selectedEndpointId }) => {
                   updateRequest({ body: value });
                 }
               }}
-              theme={theme.isDark ? 'vs-dark' : 'light'}
+              theme={theme.isDark ? 'customDarkTheme' : 'light'}
+              beforeMount={(monaco) => {
+                monaco.editor.defineTheme('customDarkTheme', customDarkTheme);
+              }}
               options={{
                 minimap: { enabled: false },
                 fontSize: 14,
