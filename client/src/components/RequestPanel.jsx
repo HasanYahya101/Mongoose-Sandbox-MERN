@@ -31,6 +31,35 @@ const customDarkTheme = {
     'editor.wordHighlightBackground': '#34425980',
     'editor.wordHighlightStrongBackground': '#34425980',
     'editorBracketMatch.background': '#34425980',
+
+    'editor.findMatchBackground': '#515c6a',
+    'editor.findMatchHighlightBackground': '#ea5c0055',
+    'editor.findRangeHighlightBackground': '#3a3d4166',
+
+    'editorWidget.background': '#1e293b',
+    'editorWidget.foreground': '#d4d4d4',
+    'editorWidget.border': '#3b3b3b',
+
+    'suggestionWidget.background': '#1e293b',
+    'suggestionWidget.foreground': '#d4d4d4',
+    'suggestionWidget.selectedBackground': '#344259',
+    'suggestionWidget.highlightForeground': '#569cd6',
+
+    'editorHoverWidget.background': '#1e293b',
+    'editorHoverWidget.foreground': '#d4d4d4',
+    'editorHoverWidget.border': '#3b3b3b',
+
+    'signatureHelpWidget.background': '#1e293b',
+    'signatureHelpWidget.foreground': '#d4d4d4',
+
+    'quickInput.background': '#1e293b',
+    'quickInput.foreground': '#d4d4d4',
+    'quickInputList.focusBackground': '#344259',
+
+    'list.hoverBackground': '#2d3a4f',
+    'list.activeSelectionBackground': '#344259',
+    'list.inactiveSelectionBackground': '#2a3445',
+    'list.highlightForeground': '#569cd6',
   }
 };
 
