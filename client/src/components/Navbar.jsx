@@ -61,7 +61,8 @@ const Navbar = ({ toggleSidebar }) => {
             >
               <Database size={24} className="text-blue-500" />
             </motion.div>
-            <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">Mongoose Sandbox</span>
+            <h1 className="text-xl font-semibold text-slate-800 dark:text-white"
+            >MongoDB API Tester</h1>
           </div>
         )}
       </div>
