@@ -18,7 +18,7 @@ export const ThemeProvider = ({ children }) => {
     try {
       const savedTheme = localStorage.getItem('theme');
       // get the system theme
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (!savedTheme) {
         // If no theme is saved, use the system theme
         return { ...defaultTheme, isDark: systemTheme };
