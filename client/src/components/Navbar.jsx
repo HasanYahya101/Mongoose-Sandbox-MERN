@@ -28,10 +28,6 @@ const Navbar = ({ toggleSidebar }) => {
     const handleResize = () => {
       const newIsDesktop = window.innerWidth >= 1024;
       setIsDesktop(newIsDesktop);
-      // If switching to desktop, ensure sidebar is open
-      if (newIsDesktop) {
-        setSidebarOpen(true);
-      }
     };
 
     window.addEventListener('resize', handleResize);
