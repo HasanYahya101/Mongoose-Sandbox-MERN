@@ -54,7 +54,7 @@
 
 ## 📷 UI Preview
 ![Screenshot 2025-05-11 083343](https://github.com/user-attachments/assets/bbb99d01-7697-4042-9b56-0a8239f5efc5)
-![image](https://github.com/user-attachments/assets/1a64623c-f479-47d2-93c8-2dfadad25b14)
+![image](https://github.com/user-attachments/assets/ef024c04-e7cf-4548-b23e-3202051f0b1a)
 
 
 ## 🛠️ Getting Started
