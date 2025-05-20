@@ -63,8 +63,8 @@ const Layout = () => {
             <Panel defaultSize={50} minSize={20}>
               <RequestPanel selectedEndpointId={selectedTabId} />
             </Panel>
-            <PanelResizeHandle className="h-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-row-resize flex items-center justify-center">
-              <div className="w-8 h-1 rounded-full bg-slate-300 dark:bg-slate-600" />
+            <PanelResizeHandle className="h-2 bg-slate-100 dark:bg-slate-800 group hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-row-resize flex items-center justify-center">
+              <div className="w-8 h-1 rounded-full bg-slate-300 dark:bg-slate-600 group-hover:dark:bg-slate-500" />
             </PanelResizeHandle>
             <Panel defaultSize={50} minSize={20}>
               <ResponsePanel />
