@@ -3,7 +3,7 @@ import { Editor } from '@monaco-editor/react';
 import { getEndpointById } from '../data/endpoints';
 import { useRequest } from '../contexts/RequestContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Send, PlusCircle, Save, Code, Database, PlayCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Send, PlayCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import MethodSelector from './request/MethodSelector';
 import { useTheme } from '../contexts/ThemeContext';
 
