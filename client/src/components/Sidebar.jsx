@@ -76,12 +76,25 @@ const Sidebar = ({ onSelectEndpoint }) => {
     }
   }, []);
 
+  const [isLg, setIsLg] = React.useState(window.innerWidth >= 1024);
+
+  const handleResize = () => {
+    setIsLg(window.innerWidth >= 1024);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-900">
-      <div className="overflow-y-auto flex-1 p-2">
+      <div className="overflow-y-auto flex-1 p-2 mt-14 lg:mt-0">
         {activeTab === 'endpoints' && (
           <>
-            <div className="mb-4">
+            {isLg === true && (<div className="mb-4">
               <div className="relative">
                 <input
                   type="text"
@@ -91,7 +104,10 @@ const Sidebar = ({ onSelectEndpoint }) => {
                   className="w-full p-2 pl-3 pr-8 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
-            </div>
+            </div>)}
+            {!isLg && (
+              <div className="mt-1.5"></div>)
+            }
 
             {Object.entries(endpointsByCategory).map(([category, endpoints]) => (
               <div key={category} className="mb-2">
