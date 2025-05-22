@@ -67,7 +67,7 @@ cd Mongoose-Sandbox-MERN
 ```
 ### 2. Add Environment Variables
 
-Create a .env file in both `client` and `server` folders and enter your `Secret Keys` in them.
+Create a .env file in both `client` and `server` folders and enter your `Secret Keys` in them as per `example.env`.
 
 ### 3. Install Packages and run Project
 
