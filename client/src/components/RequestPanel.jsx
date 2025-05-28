@@ -326,6 +326,8 @@ const RequestPanel = ({ selectedEndpointId }) => {
               }}
               options={{
                 minimap: { enabled: false },
+                contextmenu: false,
+                readOnly: false,
                 fontSize: 14,
                 wordWrap: 'on',
                 automaticLayout: true,
