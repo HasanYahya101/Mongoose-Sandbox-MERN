@@ -38,7 +38,6 @@ const customDarkTheme = {
 
     'editorWidget.background': '#1e293b',
     'editorWidget.foreground': '#d4d4d4',
-    'editorWidget.border': '#3b3b3b',
 
     'suggestionWidget.background': '#1e293b',
     'suggestionWidget.foreground': '#d4d4d4',
@@ -47,7 +46,6 @@ const customDarkTheme = {
 
     'editorHoverWidget.background': '#1e293b',
     'editorHoverWidget.foreground': '#d4d4d4',
-    'editorHoverWidget.border': '#3b3b3b',
 
     'signatureHelpWidget.background': '#1e293b',
     'signatureHelpWidget.foreground': '#d4d4d4',
@@ -60,6 +58,18 @@ const customDarkTheme = {
     'list.activeSelectionBackground': '#344259',
     'list.inactiveSelectionBackground': '#2a3445',
     'list.highlightForeground': '#569cd6',
+
+    'menubar.selectionBackground': '#2d3a4f',
+    'menu.foreground': '#d4d4d4',
+    'menu.background': '#1e293b',
+    'menu.selectionForeground': '#ffffff',
+    'menu.selectionBackground': '#344259',
+
+    'menu.border': '#4b5563',
+    'menu.separatorBackground': '#4b5563',
+    'editorWidget.border': '#4b5563',
+    'editorHoverWidget.border': '#4b5563',
+    'suggestionWidget.border': '#4b5563',
   }
 };
 
@@ -323,12 +333,6 @@ const RequestPanel = ({ selectedEndpointId }) => {
               theme={theme.isDark ? 'customDarkTheme' : 'light'}
               beforeMount={(monaco) => {
                 monaco.editor.defineTheme('customDarkTheme', customDarkTheme);
-              }}
-              onMount={(editor, monaco) => {
-                const action = editor.getAction('changeAll');
-                if (action) {
-                  action.dispose();
-                }
               }}
               options={{
                 minimap: { enabled: false },
