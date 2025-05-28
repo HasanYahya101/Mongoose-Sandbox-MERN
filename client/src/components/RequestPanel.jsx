@@ -324,6 +324,12 @@ const RequestPanel = ({ selectedEndpointId }) => {
               beforeMount={(monaco) => {
                 monaco.editor.defineTheme('customDarkTheme', customDarkTheme);
               }}
+              onMount={(editor, monaco) => {
+                const action = editor.getAction('changeAll');
+                if (action) {
+                  action.dispose();
+                }
+              }}
               options={{
                 minimap: { enabled: false },
                 readOnly: false,
