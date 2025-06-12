@@ -10,7 +10,6 @@ import {
   SidebarContent,
 } from './ui/sidebar';
 
-
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedTabId, setSelectedTabId] = useState(null);
