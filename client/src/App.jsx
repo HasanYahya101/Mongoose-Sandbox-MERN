@@ -7,6 +7,7 @@ import { SidebarProvider } from './components/ui/sidebar';
 
 function App() {
   return (
+    // All contexts
     <ThemeProvider>
       <RequestProvider>
         <SidebarProvider defaultOpen={true} className='min-w-[100vw]'>
