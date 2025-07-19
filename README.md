@@ -89,5 +89,6 @@ npm run dev
 
 ## 🖥️ System Architecture
 
-<img width="3840" height="3686" alt="System" src="https://github.com/user-attachments/assets/33bdb07c-a9fb-466d-b707-a519b3731ce4" />
+<img width="3694" height="3829" alt="System" src="https://github.com/user-attachments/assets/b447920b-df96-4a43-8126-87336735ca3d" />
+
 
