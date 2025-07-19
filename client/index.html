@@ -2,22 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      class="lucide-icon"
+      id="favicon"
+      type="image/svg+xml"
+      href="/vite.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mongoose Sandbox</title>
-    <style>
-      /* Default light mode */
-      .lucide-database-icon {
-        color: black;
-      }
+    <script>
+      const systemTheme =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-      /* Dark mode support */
-      @media (prefers-color-scheme: dark) {
-        .lucide-database-icon {
-          color: white;
-        }
+      if (systemTheme) {
+        fetch("/vite.svg")
+          .then((res) => res.text())
+          .then((svgText) => {
+            // Replace currentColor with white
+            const whiteSvg = svgText.replace(/currentColor/g, "white");
+
+            const blob = new Blob([whiteSvg], { type: "image/svg+xml" });
+            const url = URL.createObjectURL(blob);
+
+            const favicon = document.getElementById("favicon");
+            if (favicon) {
+              favicon.href = url;
+            }
+          })
+          .catch((err) => console.error("Failed to set dark mode favicon:", err));
       }
-    </style>
+    </script>
   </head>
   <body>
     <div id="root"></div>
