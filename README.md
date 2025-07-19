@@ -86,3 +86,5 @@ cd client
 npm install
 npm run dev
 ```
+### System Architecture
+<img width="3840" height="3789" alt="System" src="https://github.com/user-attachments/assets/93a5f065-2d6f-49c0-815d-3366a40a37ce" />
